@@ -18,7 +18,7 @@ namespace cpp_playground::object_model{
         }
 
         Tracer& operator=(const Tracer& other) {
-            std::cout << "Copy assignment called from " << other.name_ << " to" << name_ << "\n";
+            std::cout << "Copy assignment called from " << other.name_ << " to " << name_ << "\n";
             if (this == &other) {
                 return *this;
             }
@@ -33,7 +33,7 @@ namespace cpp_playground::object_model{
         }
 
         Tracer& operator=(Tracer&& other) noexcept {
-            std::cout << "Move assignment called from " << other.name_ << " to" << name_ << "\n";
+            std::cout << "Move assignment called from " << other.name_ << " to " << name_ << "\n";
 
             if (this == &other) {
                 return *this;

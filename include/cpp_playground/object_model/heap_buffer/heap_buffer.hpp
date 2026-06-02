@@ -112,7 +112,7 @@ namespace cpp_playground::object_model {
 
     private:
         T *data_;
-        std::size_t size_;
+        std::size_t size_{0};
 
         void validate_index(std::size_t index) const {
             if (index >= size_) {
