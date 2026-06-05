@@ -9,9 +9,7 @@ namespace examples::object_model::tracer {
     using Tracer = cpp_playground::object_model::Tracer;
 
     void compare_names(std::string_view a, std::string_view b) {
-        if (a == b) {
-            std::cout << "Names MATCH!\n";
-        } else {
+        if (a != b) {
             std::cout << "Names MISMATCH!\n";
             std::cout << a << " != " << b << "\n";
         }
@@ -23,6 +21,7 @@ namespace examples::object_model::tracer {
 
         compare_names(a.name(), "A");
         assert(a.name() == "A");
+        std::cout << "PASSED!\n";
     }
 
     void copy_constructor_demo() {
@@ -32,6 +31,7 @@ namespace examples::object_model::tracer {
 
         compare_names(a.name(), b.name());
         assert(a.name() == b.name());
+        std::cout << "PASSED!\n";
     }
 
     void copy_assignment_demo() {
@@ -43,6 +43,7 @@ namespace examples::object_model::tracer {
 
         compare_names(a.name(), b.name());
         assert(b.name() == "A");
+        std::cout << "PASSED!\n";
     }
 
     void move_constructor_demo() {
@@ -52,6 +53,7 @@ namespace examples::object_model::tracer {
 
         compare_names(b.name(), "A");
         assert(b.name() == "A");
+        std::cout << "PASSED!\n";
     }
 
     void move_assignment_demo() {
@@ -63,6 +65,7 @@ namespace examples::object_model::tracer {
 
         compare_names(b.name(), "A");
         assert(b.name() == "A");
+        std::cout << "PASSED!\n";
     }
 
     void run_demo_suite() {
