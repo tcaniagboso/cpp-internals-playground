@@ -37,14 +37,10 @@ namespace examples::object_model::heap_buffer {
 
             assert(a[i] == b[i]);
         }
-
-        std::cout << "Buffers MATCH!" << "\n";
     }
 
     void compare_sizes(std::size_t a, std::size_t b) {
-        if (a == b) {
-            std::cout << "Sizes MATCH!\n";
-        } else {
+        if (a != b) {
             std::cout << "Sizes MISMATCH!\n";
             std::cout << a << " != " << b << "\n";
         }
@@ -55,6 +51,7 @@ namespace examples::object_model::heap_buffer {
         HeapBuffer a(10);
 
         compare_sizes(a.size(), 10);
+        std::cout << "PASSED!\n";
     }
 
     void copy_constructor_demo() {
@@ -73,6 +70,8 @@ namespace examples::object_model::heap_buffer {
         b[0] = 99;
         assert(a[0] == 1);
         assert(b[0] == 99);
+
+        std::cout << "PASSED!\n";
     }
 
     void copy_assignment_demo() {
@@ -94,6 +93,8 @@ namespace examples::object_model::heap_buffer {
         b[0] = 99;
         assert(a[0] == 1);
         assert(b[0] == 99);
+
+        std::cout << "PASSED!\n";
     }
 
     void move_constructor_demo() {
@@ -115,6 +116,8 @@ namespace examples::object_model::heap_buffer {
         b[0] = 99;
         assert(c[0] == 1);
         assert(b[0] == 99);
+
+        std::cout << "PASSED!\n";
     }
 
     void move_assignment_demo() {
@@ -139,6 +142,8 @@ namespace examples::object_model::heap_buffer {
         b[0] = 99;
         assert(c[0] == 1);
         assert(b[0] == 99);
+
+        std::cout << "PASSED!\n";
     }
 
     void out_of_range_demo() {
@@ -147,10 +152,12 @@ namespace examples::object_model::heap_buffer {
 
         try {
             a[3] = 10;
-            assert(false);
-        } catch (const std::out_of_range &) {
-            std::cout << "Caught out_of_range as expected\n";
+            assert(false && "Expected operator[] to throw");
+        } catch (const std::out_of_range& e) {
+            std::cout << "operator[] threw out_of_range as expected: " << e.what() << "\n";
         }
+
+        std::cout << "PASSED!\n";
     }
 
     void run_demo_suite() {
