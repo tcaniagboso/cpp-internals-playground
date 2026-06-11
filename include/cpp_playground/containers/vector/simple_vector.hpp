@@ -14,6 +14,43 @@ namespace cpp_playground::containers {
     class SimpleVector {
     public:
         //=================
+        // Iterator
+        //=================
+        struct Iterator {
+        private:
+            T* ptr_;
+
+        public:
+
+            explicit Iterator(T* ptr) : ptr_(ptr) {}
+
+            T& operator*() {
+                return *ptr_;
+            }
+
+            const T& operator*() const {
+                return *ptr_;
+            }
+
+            Iterator& operator++() {
+                ++ptr_;
+                return *this;
+            }
+
+            Iterator& operator--() {
+                --ptr_;
+                return *this;
+            }
+
+            bool operator==(const Iterator& other) const {
+                return ptr_ == other.ptr_;
+            }
+            bool operator!=(const Iterator& other) const {
+                return ptr_ != other.ptr_;
+            }
+        };
+
+        //=================
         // Constructors
         //=================
         SimpleVector() = default;
@@ -142,6 +179,13 @@ namespace cpp_playground::containers {
         //==================
         // Properties
         //==================
+        [[nodiscard]] Iterator begin() {
+            return Iterator(data_);
+        }
+        [[nodiscard]] Iterator end() {
+            return Iterator(data_ + size_);
+        }
+
         [[nodiscard]] std::size_t size() const { return size_; }
 
         [[nodiscard]] std::size_t capacity() const { return capacity_; }
